@@ -107,7 +107,7 @@ class OEmbedAction extends Action
             ]),
         ]);
 
-        $this->action(function(TiptapEditor $component, $data) {
+        $this->action(function (TiptapEditor $component, $data) {
             $component->getLivewire()->dispatchBrowserEvent('insert-video', [
                 'statePath' => $component->getStatePath(),
                 'video' => $data,

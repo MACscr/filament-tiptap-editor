@@ -15,5 +15,5 @@ return [
         'alt' => 'Description',
         'alt_helper_text' => 'Learn how to describe the purpose of the image</a>. Leave empty if the image is purely decorative.',
         'title' => 'Title',
-    ]
+    ],
 ];

@@ -22,7 +22,9 @@ class TiptapEditor extends Field implements CanBeLengthConstrainedContract
     use HasExtraAlpineAttributes;
 
     public const OUTPUT_HTML = 'html';
+
     public const OUTPUT_JSON = 'json';
+
     public const OUTPUT_TEXT = 'text';
 
     protected string $view = 'filament-tiptap-editor::tiptap-editor';
@@ -35,17 +37,17 @@ class TiptapEditor extends Field implements CanBeLengthConstrainedContract
 
     protected ?string $disk = null;
 
-    protected string | Closure | null $directory = null;
+    protected string|Closure|null $directory = null;
 
     protected ?array $acceptedFileTypes = null;
 
     protected ?int $maxFileSize = null;
 
-    protected null | string $output = null;
+    protected null|string $output = null;
 
     protected array $extensions = [];
 
-    protected null | string | Closure $maxContentWidth = null;
+    protected null|string|Closure $maxContentWidth = null;
 
     /**
      * @throws InvalidOutputFormatException|BindingResolutionException
@@ -60,13 +62,13 @@ class TiptapEditor extends Field implements CanBeLengthConstrainedContract
 
         $this->extensions = config('filament-tiptap-editor.extensions') ?? [];
 
-        $this->afterStateHydrated(function(TiptapEditor $component, string|array|null $state) {
-           if (! $state) {
-               $component->state('<p></p>');
-           }
+        $this->afterStateHydrated(function (TiptapEditor $component, string|array|null $state) {
+            if (! $state) {
+                $component->state('<p></p>');
+            }
         });
 
-        $this->dehydrateStateUsing(function(TiptapEditor $component, string | array | null $state) {
+        $this->dehydrateStateUsing(function (TiptapEditor $component, string|array|null $state) {
             if ($state && $this->output === self::OUTPUT_JSON) {
                 return is_array($state) ? $state : json_decode($state);
             }
@@ -152,7 +154,7 @@ class TiptapEditor extends Field implements CanBeLengthConstrainedContract
     public function profile(?string $profile): static
     {
         $this->profile = $profile;
-        $this->tools = config('filament-tiptap-editor.profiles.' . $profile);
+        $this->tools = config('filament-tiptap-editor.profiles.'.$profile);
 
         return $this;
     }
@@ -171,7 +173,7 @@ class TiptapEditor extends Field implements CanBeLengthConstrainedContract
         return $this;
     }
 
-    public function directory(string | Closure | null $directory): static
+    public function directory(string|Closure|null $directory): static
     {
         $this->directory = $directory;
 
@@ -266,7 +268,7 @@ class TiptapEditor extends Field implements CanBeLengthConstrainedContract
             self::OUTPUT_TEXT,
         ];
 
-        if (!in_array($this->output, $availableFormats)) {
+        if (! in_array($this->output, $availableFormats)) {
             throw new InvalidOutputFormatException;
         }
     }

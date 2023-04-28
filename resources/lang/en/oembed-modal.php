@@ -16,6 +16,6 @@ return [
         'loop' => 'Loop',
         'title' => 'Title',
         'byline' => 'Byline',
-        'portrait' => 'Portrait'
+        'portrait' => 'Portrait',
     ],
 ];
